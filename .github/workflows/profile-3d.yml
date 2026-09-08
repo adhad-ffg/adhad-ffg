@@ -1,24 +1,20 @@
 name: GitHub-Profile-3D-Contrib
 
 on:
-  schedule: 
+  schedule:
     - cron: "0 0 * * *"
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     name: generate-github-profile-3d-contrib
     steps:
-      # 最新の v4 に変更
       - uses: actions/checkout@v4
-      
-      # 最新の v0.7.2（Node 24対応版）に変更
-      - uses: yoshi389111/github-profile-3d-contrib@v0.7.2
+      - uses: yoshi389111/github-profile-3d-contrib@0.9.3
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           USERNAME: ${{ github.repository_owner }}
-          
       - name: Commit & Push
         run: |
           git config user.name github-actions
